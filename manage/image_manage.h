@@ -2,14 +2,15 @@
 #define __IMAGE_MANAGE_H__
 
 #define PATHNAMW_MAX_NUM 256
+#define PICTURE_MAX_NUM  100
 
 
 typedef enum pic_type
 {
-	PIC_BMP,
-	PIC_JPG,
-	PIC_PNG,
-	PIC_UNKOWN,
+	BMP_PIC,
+	JPG_PIC,
+	PNG_PIC,
+	UNKOWN_PIC,
 }pic_type_t;
 
 typedef struct pic_info

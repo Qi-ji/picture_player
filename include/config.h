@@ -37,11 +37,19 @@ typedef struct
 	char			*pic_date;
 }pic_info;
 
-int display_jpeg(const char *path);
-int display_bmp(const char *path);
-int display_png(const char *path);
+
+int is_jpg(const char *path);
+int is_bmp(const char *path);
+int is_png(const char *path);
+
+
+int jpg_display(const char *path);
+int bmp_display(const char *path);
+int png_display(const char *path);
 
 int picture_scan(const char *path);
+int picture_display(void);
+
 
 
 

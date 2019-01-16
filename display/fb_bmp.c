@@ -14,7 +14,7 @@
  *para: the path and name of the picture
  *return:0--not jpg,1--is jpg, -1--error
  */
-static int is_bmp(const char *path)
+int is_bmp(const char *path)
 {
 	FILE *file = NULL;
 	size_t ret = 0;
@@ -54,9 +54,8 @@ static int is_bmp(const char *path)
  *parameter:the path of your bmp path.eg:"123.bmp"
  *return:-1 is error.
  */
-	static int bmp_analyze(pic_info  *pbmp)
-	{
-
+static int bmp_analyze(pic_info  *pbmp)
+{
 	int fd = -1;
 	BitMapFileHeader bmp_header;
 	BitMapInfoHeader bmp_info;
@@ -110,7 +109,7 @@ static int is_bmp(const char *path)
 
 
 	
-int display_bmp(const char *path)
+int bmp_display(const char *path)
 {
 	pic_info b_picture;
 	int ret;

@@ -6,9 +6,15 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <string.h>
+#include <unistd.h>
+
 
 #include <config.h>
 #include "image_manage.h"
+
+struct pic_info picture_info[PICTURE_MAX_NUM];
+int pic_index = 0; 
+
 
 int picture_scan(const char *path)
 {
@@ -42,12 +48,30 @@ int picture_scan(const char *path)
 		/*2.2 */
 		if (S_ISREG(file_statbuf.st_mode))
 		{
-			debug("is a file \n");
+			debug("%s is a file \n", cur_pathname);
+			if(is_bmp(cur_pathname))
+			{
+				picture_info[pic_index].type = BMP_PIC;
+				strcpy(picture_info[pic_index].pathname, cur_pathname);
+			}
+			
+			if(is_jpg(cur_pathname))
+			{
+				picture_info[pic_index].type = JPG_PIC;
+				strcpy(picture_info[pic_index].pathname, cur_pathname);
+			}
+			if(is_png(cur_pathname))
+			{
+				picture_info[pic_index].type = PNG_PIC;
+				strcpy(picture_info[pic_index].pathname, cur_pathname);
+			}
+
+			pic_index++;
 		}
 		
 		if (S_ISDIR(file_statbuf.st_mode))
 		{
-			debug("is a dir \n");
+			debug("%s is a dir \n", cur_pathname);
 			picture_scan(cur_pathname); 		//recursion the new dir
 		}
 		
@@ -57,7 +81,33 @@ int picture_scan(const char *path)
 	return 0;
 }
 
+int picture_display(void)
+{
+	int i = 0;
+	for(i=0; i<pic_index; i++)
+	{
+		switch(picture_info[i].type)
+		{
+			case BMP_PIC:
+				bmp_display(picture_info[i].pathname);
+				break;
 
+			case JPG_PIC:
+				jpg_display(picture_info[i].pathname);
+				break;
+
+			case PNG_PIC:
+				png_display(picture_info[i].pathname);
+				break;
+
+			default:
+				printf("UNKNOWN picture type\n");
+				break;
+		}
+		sleep(2);
+	}
+    return 0;
+}
 
 
 

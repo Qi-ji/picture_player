@@ -35,7 +35,7 @@ my_error_exit (j_common_ptr cinfo)
  *return:0--not jpg,1--is jpg, -1--error
  */
 
-static int is_jpeg(const char *path)
+int is_jpg(const char *path)
 {
 	FILE *file = NULL;
 	size_t ret = 0;
@@ -80,7 +80,7 @@ static int is_jpeg(const char *path)
 }
 
 
-static int jpeg_analyze (pic_info  *pjpeg)
+static int jpg_analyze (pic_info  *pjpeg)
 {
 	struct jpeg_decompress_struct cinfo;
 	struct my_error_mgr jerr;
@@ -148,7 +148,7 @@ static int jpeg_analyze (pic_info  *pjpeg)
 	return 0;
 }
 	
-int display_jpeg(const char *path)
+int jpg_display(const char *path)
 {
 	pic_info j_picture;
 	int ret;
@@ -159,7 +159,7 @@ int display_jpeg(const char *path)
 		return -1;
 	}
 
-	ret = is_jpeg(path);
+	ret = is_jpg(path);
 	if(ret != 1)
 	{
 		fprintf(stderr, "%s is not a jpg picture.\n", path);
@@ -169,7 +169,7 @@ int display_jpeg(const char *path)
 	j_picture.pathname = path;
 	j_picture.pic_date= rgb_buf;
 
-	ret = jpeg_analyze(&j_picture);
+	ret = jpg_analyze(&j_picture);
 	if(ret == -1)
 	{
 		fprintf(stderr, "jpeg_analyze error.\n");

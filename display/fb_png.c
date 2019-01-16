@@ -15,7 +15,7 @@
  *return:1--is png, -1--error or not png
  */
 
-static int is_png(const char *path)
+int is_png(const char *path)
 {
 	FILE *fp;
 	char buf[PNG_BYTES_TO_CHECK];
@@ -126,7 +126,7 @@ static int png_analyze(pic_info  *ppng)
 }
 
 
-int display_png(const char *path)
+int png_display(const char *path)
 {
 	pic_info p_picture;
 	int ret;

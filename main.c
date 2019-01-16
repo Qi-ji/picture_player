@@ -49,13 +49,13 @@ int main(void)
 	
 #endif
 
-	//display_jpeg("./image/motorbike.jpg");
+	picture_scan("./image");
 
-	//sleep(2);
+	while(1)
+	{
+	    picture_display();
+	}
 	
-	//display_bmp("./image/12.bmp");
-	display_png("./image/motorbike2.png");
-	//picture_scan("./image");
 	
 	fb_close();
 
