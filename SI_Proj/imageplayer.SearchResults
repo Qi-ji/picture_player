@@ -1,0 +1,5 @@
+---- bmp_buf Matches (3 in 2 files) ----
+Fb_bmp.c (e:\win_share\project\qzm\album_proj\display):unsigned char bmp_buf[BMP_BUF_SIZE];	//put all the bmp code in bmp_buf 
+Fb_bmp.c (e:\win_share\project\qzm\album_proj\display):	 ret = read(fd, bmp_buf, bmp_date_len);
+Main.c (e:\win_share\project\qzm\album_proj):	picture_showed.pic_date= bmp_buf;
+---- bmp_date Matches (0 in 0 files) ----
